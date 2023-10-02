@@ -1,28 +1,45 @@
-import "dvd" -- DEMO
-local dvd = dvd(1, -1) -- DEMO
+import "CoreLibs/graphics"
+import "CoreLibs/sprites"
+import "CoreLibs/animation"
+import "CoreLibs/animator"
+import "CoreLibs/object"
+import "CoreLibs/ui"
+import "CoreLibs/math"
+import "CoreLibs/timer"
+import "CoreLibs/frameTimer"
+import "CoreLibs/crank"
 
 local gfx <const> = playdate.graphics
-local font = gfx.font.new('font/Mini Sans 2X') -- DEMO
+local pd <const> = playdate
 
-local function loadGame()
-	playdate.display.setRefreshRate(50) -- Sets framerate to 50 fps
-	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
-	gfx.setFont(font) -- DEMO
-end
+local gridview = pd.ui.gridview.new(32, 32)
 
-local function updateGame()
-	dvd:update() -- DEMO
-end
+gridview:setNumberOfColumns(8)
+gridview:setNumberOfRows(6)
 
-local function drawGame()
-	gfx.clear() -- Clears the screen
-	dvd:draw() -- DEMO
-end
+local gridviewSprite = gfx.sprite.new()
+gridviewSprite:setCenter(0, 0)
+gridviewSprite:moveTo(100, 70)
+gridviewSprite:add()
 
-loadGame()
+function pd.update()
+	if pd.buttonJustPressed(pd.kButtonUp) then
+		gridview:selectPreviousRow(true)
+	elseif pd.buttonJustPressed(pd.kButtonDown) then
+		gridview:selectNextRow(true)
+	elseif pd.buttonJustPressed(pd.kButtonLeft) then
+		gridview:selectPreviousColumn(false)
+	elseif pd.buttonJustPressed(pd.kButtonRight) then
+		gridview:selectNextColumn(false)
+	end
 
-function playdate.update()
-	updateGame()
-	drawGame()
-	playdate.drawFPS(0,0) -- FPS widget
+	local gridViewImage = gfx.image.new(200, 100)
+	gfx.pushContext(gridViewImage)
+		gridview:drawInRect(100, 70, 200, 100)
+	gfx.popContext()
+	gridviewSprite:setImage(gridViewImage)
+
+	gfx.sprite.update()
+	pd.timer.updateTimers()
+	pd.drawFPS(0,0) -- FPS widget
 end

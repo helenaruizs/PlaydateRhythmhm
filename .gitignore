@@ -39,3 +39,7 @@ luac.out
 *.x86_64
 *.hex
 
+builds/PlaydateRhythmhm.pdx/dvd.pdz
+builds/PlaydateRhythmhm.pdx/font/Mini Sans 2X.pft
+builds/PlaydateRhythmhm.pdx/main.pdz
+builds/PlaydateRhythmhm.pdx/pdxinfo
