@@ -1,8 +1,0 @@
-{
-    "toyboxes": {
-        "github.com/Whitebrim/AnimatedSprite": "1"
-    },
-    "installed": {
-        "github.com/Whitebrim/AnimatedSprite": "1.1.0"
-    }
-}

@@ -1,27 +1,28 @@
-import "CoreLibs/graphics"
-import "CoreLibs/sprites"
-import "CoreLibs/animation"
-import "CoreLibs/animator"
-import "CoreLibs/object"
-import "CoreLibs/ui"
-import "CoreLibs/math"
-import "CoreLibs/timer"
-import "CoreLibs/frameTimer"
-import "CoreLibs/crank"
-
-import '../toyboxes/toyboxes.lua'
-
-import "player"
+import "dvd" -- DEMO
+local dvd = dvd(1, -1) -- DEMO
 
 local gfx <const> = playdate.graphics
-local pd <const> = playdate
+local font = gfx.font.new('font/Mini Sans 2X') -- DEMO
 
-local function initialize()
-	Player.init(200, 120)
+local function loadGame()
+	playdate.display.setRefreshRate(50) -- Sets framerate to 50 fps
+	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
+	gfx.setFont(font) -- DEMO
 end
 
-initialize()
+local function updateGame()
+	dvd:update() -- DEMO
+end
 
-function pd.update()
-	gfx.sprite.update()
+local function drawGame()
+	gfx.clear() -- Clears the screen
+	dvd:draw() -- DEMO
+end
+
+loadGame()
+
+function playdate.update()
+	updateGame()
+	drawGame()
+	playdate.drawFPS(0,0) -- FPS widget
 end
