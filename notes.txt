@@ -1,0 +1,5 @@
+If I need the time elapsed since last frame
+	--#region Updating delta time (time between frames)
+	DELTA_TIME = pd.getElapsedTime()
+	pd.resetElapsedTime()
+	--#endregion

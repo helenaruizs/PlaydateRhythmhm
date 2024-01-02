@@ -1,13 +1,8 @@
+-- "Macros"
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 
 class('Player').extends(gfx.sprite)
-
--- "Macros"
-local pd <const> = playdate
-local gfx <const> = playdate.graphics
-local viewWidth <const> = 400
-local viewHeight <const> = 240
 
 -- Variables
 local playerSpeed = 1
