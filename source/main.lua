@@ -50,16 +50,17 @@ SECTION_COUNTER = 1
 --#region Local variables
 local playTimer = nil
 local playTime = 8 * 1000 -- 30 seconds
+local i = 1
 --#endregion
 
 --#region Level 1
 local sec1 = {0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0}
 
-local sec2 = {0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0}
+local sec2 = {1, 0, 0, 0,   0, 0, 0, 0,   1, 0, 0, 0,   0, 0, 0, 0}
 
-local sec3 = {0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0}
+local sec3 = {1, 0, 0, 0,   0, 0, 0, 0,   1, 0, 0, 0,   0, 0, 0, 0}
 
-local sec4 = {0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0}
+local sec4 = {1, 0, 0, 0,   0, 0, 0, 0,   1, 0, 0, 0,   0, 0, 0, 0}
 
 local sec5 = {1, 0, 0, 0,   0, 0, 0, 0,   1, 0, 0, 0,   0, 0, 0, 0}
 
@@ -86,6 +87,8 @@ local sec15 = {0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0}
 local sec16 = {0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0}
 
 local level1sections = {sec1, sec2, sec3, sec4, sec5, sec6, sec7, sec8, sec9, sec10, sec11, sec12, sec13, sec14, sec15, sec16}
+
+local level1yPositions = {10, 125, 230, 199, 215, 209, 210, 206, 205, 207, 200, 206, 197, 197, 192, 185, 181, 172, 166, 158, 148, 144, 137, 128, 109, 90, 92, 90, 93, 94, 98, 94, 77, 59, 57, 86, 95, 105, 118, 119, 125, 130, 134, 134, 137, 135, 137, 141, 137, 136, 138, 133, 137, 148, 160, 155, 146, 146, 136, 131, 124, 116, 133, 173, 204, 173, 131, 126, 115, 105, 102, 95, 93, 89, 88, 87, 86, 86, 90, 92, 89, 85, 64, 49, 53, 55, 54, 52, 56, 53, 37, 14, 10, 30, 35, 43, 61, 67, 77, 87}
 --#endregion
 
 --#region Custom Functions
@@ -107,10 +110,12 @@ local function beatCounter()
 	end
 
 	-- Check for spawn points
-    local spawnY = level1sections[SECTION_COUNTER][SUB_BEAT_COUNTER]
-    if spawnY ~= 0 then
-        
-		gfx.drawText("YAYY", 100, 150)
+    local spawnX = level1sections[SECTION_COUNTER][SUB_BEAT_COUNTER]
+    
+	local spawnY = level1yPositions[i]
+	if spawnX ~= 0 then
+		gfx.drawText("YAYY", 100, spawnY)
+		i += 1
 		--Collectable.spawn(spawnY) -- Spawn collectable at the determined Y position
     end
 end
