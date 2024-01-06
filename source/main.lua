@@ -8,6 +8,7 @@ import "CoreLibs/ui"
 
 --Game objects
 import "objects/player"
+import "objects/collectable"
 import "objects/wall"
 import "gameData"
 
@@ -114,7 +115,7 @@ local function beatCounter()
     
 	local spawnY = level1yPositions[i]
 	if spawnX ~= 0 then
-		gfx.drawText("YAYY", 100, spawnY)
+		Collectable(420, spawnY)
 		i += 1
 		--Collectable.spawn(spawnY) -- Spawn collectable at the determined Y position
     end
